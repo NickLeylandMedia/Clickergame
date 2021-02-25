@@ -1,5 +1,31 @@
 @import "./nlm-styles";
 
+//TEXT
+.darkText {
+    @include darkText(); 
+}
+
+.lightText {
+    @include lightText();
+}
+
+.bold {
+    @include bold();
+}
+
+//Opacity
+.pt5 {
+    @include pt5();
+}
+
+.pt7 {
+    @include pt7();
+}
+
+.pt9 {
+    @include pt9();
+}
+
 
 
 

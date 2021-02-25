@@ -21,4 +21,23 @@
 .pt9 {
   opacity: 0.9;
 }
+
+#tabNavSect {
+  width: 100%;
+}
+
+#tabNavCont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
 /*# sourceMappingURL=style.css.map */
