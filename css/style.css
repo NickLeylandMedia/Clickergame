@@ -1,3 +1,254 @@
+#gameWrapper {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "rest rest rest" "resource resource menu" "people money menu" "hap hap inv";
+}
+
+/* Resource Styling */
+#resourceDisp-cont {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: resource;
+}
+
+#resourceDisp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#resourceLeft {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.mainResource {
+  padding: .5% 0;
+  width: 33%;
+  height: 48%;
+  text-align: center;
+}
+
+.mainResource img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Game Menu */
+#gameMenu-cont {
+  width: 80%;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 3;
+  grid-area: menu;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+
+#gameMenuDisp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.gameMenuNav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+}
+
+.menuNavItem {
+  width: 25%;
+  text-align: center;
+}
+
+.menuNav {
+  width: 100%;
+  height: 30px;
+}
+
+/* People/Role Assignment Menu */
+#peopleRole-cont {
+  width: 100%;
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: people;
+}
+
+#peopleRoleDisp {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#peopleTop {
+  width: 100%;
+}
+
+#peopleBottom {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.peopleRole {
+  text-align: center;
+  width: 50%;
+}
+
+/* Restaurant type switcher */
+#typeSwitcher-cont {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: rest;
+}
+
+#typeSwitcherDisp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#typeSwitcherDisp h3 {
+  padding: 0px 20px;
+}
+
+/* Happiness Meter */
+#happyMeter-cont {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: hap;
+}
+
+/* Inventory */
+#inventory-cont {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: inv;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#inventoryDisp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#inventoryTitle {
+  text-align: center;
+}
+
+#inventoryContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.inventoryItem {
+  width: 33%;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Money Manager */
+#moneyManage-cont {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: money;
+  width: 100%;
+}
+
+#moneyCounter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#moneyTop {
+  margin: 10px 0;
+  text-align: center;
+}
+
+#moneyBottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: 30px 0;
+}
+
+.moneyButton {
+  width: 22%;
+}
+
 body {
   width: 100%;
   height: 100%;

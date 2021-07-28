@@ -16,8 +16,6 @@
     <link rel="apple-touch-icon" href="icon.png">
     <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/style.css">
     <!--CSS-->
 
@@ -30,244 +28,270 @@
 
         </nav>
     </header>
-    <section id="resourceDisp-cont">
-        <div class="sectTitle">
-            <h2>Resources</h2>
-        </div>
-        <div id="resourceDisp">
-            <div id="resourceLeft">
-                <div class="mainResource">
-                    <img src="./img/comicFlourSack.svg" alt="">
-                    <h3>Flour</h3>
-                    <button>Harvest</button>
-                    <button>Buy</button>
-                    <p></p>
-                </div>
-                <div class="mainResource">
-                    <img id="egg" src="./img/eggsCarton.svg" alt="">
-                    <h3>Egg</h3>
-                    <button>Harvest</button>
-                    <button>Buy</button>
-                    <p></p>
-                </div>
-                <div class="mainResource">
-                    <img src="./img/milkCarton.svg" alt="">
-                    <h3>Milk</h3>
-                    <button>Harvest</button>
-                    <button>Buy</button>
-                    <p></p>
-                </div>
+    <div id="gameWrapper">
+        <section id="resourceDisp-cont">
+            <div class="sectTitle">
+                <h2>Resources</h2>
             </div>
-            <div id="resourceRight">
-
-            </div>
-        </div>
-    </section>
-    <section id="gameMenu-cont">
-        <div id="gameMenuDisp">
-            <div class="gameMenuNav">
-                <div class="menuNavItem">
-                    <button class="menuNav">Research</p>
-                </div>
-                <div class="menuNavItem">
-                    <button class="menuNav">Buy</p>
-                </div>
-                <div class="menuNavItem">
-                    <button class="menuNav">Upgrades</p>
-                </div>
-                <div class="menuNavItem">
-                    <button class="menuNav">Achievements</p>
-                </div>
-            </div>
-            <div class="gameMenuContent">
-                <div class="menuGroup">
-                    <div class="researchItem">
-                        <img src="" alt="">
-                        <p class="researchItemTitle"></p>
+            <div id="resourceDisp">
+                <div id="resourceLeft">
+                    <div class="mainResource">
+                        <img src="./img/comicFlourSack.svg" alt="">
+                        <p id="flourAmt">0</p>
+                        <h3>Flour</h3>
+                        <button id="harvFlour">Harvest</button>
+                        <button onclick="buyResource('Flour', 1)">Buy</button>
                     </div>
-                    <div class="researchItem">
-                        <img src="" alt="">
-                        <p class="researchItemTitle"></p>
+                    <div class="mainResource">
+                        <img id="egg" src="./img/eggsCarton.svg" alt="">
+                        <p id="eggAmt">0</p>
+                        <h3>Egg</h3>
+                        <button id="harvEggs">Harvest</button>
+                        <button onclick="buyResource('Eggs', 1)">Buy</button>
                     </div>
-                    <div class="researchItem">
-                        <img src="" alt="">
-                        <p class="researchItemTitle"></p>
+                    <div class="mainResource">
+                        <img src="./img/milkCarton.svg" alt="">
+                        <p id="milkAmt">0</p>
+                        <h3>Milk</h3>
+                        <button id="harvMilk">Harvest</button>
+                        <button onclick="buyResource('Milk', 1)">Buy</button>
                     </div>
-                    <div class="researchItem">
-                        <img src="" alt="">
-                        <p class="researchItemTitle"></p>
+                    <div class="mainResource">
+                        <img src="./img/water.svg" alt="">
+                        <p id="waterAmt">0</p>
+                        <h3>Water</h3>
+                        <button id="harvWater">Harvest</button>
+                        <button onclick="buyResource('Water', 1)">Buy</button>
+                    </div>
+                    <div class="mainResource">
+                        <img src="./img/sugar.svg" alt="">
+                        <p id="sugarAmt">0</p>
+                        <h3>Sugar</h3>
+                        <button id="harvSugar">Harvest</button>
+                        <button onclick="buyResource('Sugar', 1)">Buy</button>
+                    </div>
+                    <div class="mainResource">
+                        <img src="./img/Apple.svg" alt="">
+                        <p id="sugarAmt">0</p>
+                        <h3>Fruit</h3>
+                        <button id="harvFruit">Harvest</button>
+                        <button>Buy</button>
                     </div>
                 </div>
-                <div class="menuGroup">
-
-                </div>
-                <div class="menuGroup">
-
-                </div>
-                <div class="menuGroup">
-
-                </div>
-                <div class="menuGroup">
-
-                </div>
-                <div class="menuGroup">
+                <div id="resourceRight">
 
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="happyMeter-cont">
-        <div id="overallHapDisp">
-            
-        </div>
-        <div class="localHapDisp">
+        </section>
+        <section id="gameMenu-cont">
+            <div id="gameMenuDisp">
+                <div class="gameMenuNav">
+                    <div class="menuNavItem">
+                        <button class="menuNav">Research</p>
+                    </div>
+                    <div class="menuNavItem">
+                        <button class="menuNav">Buy</p>
+                    </div>
+                    <div class="menuNavItem">
+                        <button class="menuNav">Upgrades</p>
+                    </div>
+                    <div class="menuNavItem">
+                        <button class="menuNav">Achievements</p>
+                    </div>
+                </div>
+                <div class="gameMenuContent">
+                    <div class="menuGroup">
+                        <div class="researchItem">
+                            <img src="" alt="">
+                            <p class="researchItemTitle"></p>
+                        </div>
+                        <div class="researchItem">
+                            <img src="" alt="">
+                            <p class="researchItemTitle"></p>
+                        </div>
+                        <div class="researchItem">
+                            <img src="" alt="">
+                            <p class="researchItemTitle"></p>
+                        </div>
+                        <div class="researchItem">
+                            <img src="" alt="">
+                            <p class="researchItemTitle"></p>
+                        </div>
+                    </div>
+                    <div class="menuGroup">
 
-        </div>
-    </section>
-    <section id="peopleRole-cont">
-        <div id="peopleRoleDisp">
-            <div class="peopleTop">
-                <div class="peopleType">
-                    <img src="./img/chefHat.svg" alt="">
-                    <h3>Bakers</h3>
-                    <button></button>
-                    <button></button>
-                    <p></p>
-                </div>
-                <div class="peopleType">
-                    <img src="./img/chefHat.svg" alt="">
-                    <h3>Cooks</h3>
-                    <button></button>
-                    <button></button>
-                    <p></p>
-                </div>
-                <div class="peopleType">
-                    <img src="./img/chefHat.svg" alt="">
-                    <h3>Servers</h3>
-                    <button></button>
-                    <button></button>
-                    <p></p>
+                    </div>
+                    <div class="menuGroup">
+
+                    </div>
+                    <div class="menuGroup">
+
+                    </div>
+                    <div class="menuGroup">
+
+                    </div>
+                    <div class="menuGroup">
+
+                    </div>
                 </div>
             </div>
-            <div class="peopleBottom">
-                <div class="peopleRole">
-                    <h4 class="roleTitle">Baker</h4>
-                    <button class="roleAssign"><</button>
-                    <button class="roleAssign">></button>
-                    <p>Assigned to: <span id="bakerAmt"></span></p>
+        </section>
+        <section id="happyMeter-cont">
+            <div id="overallHapDisp">
+
+            </div>
+            <div class="localHapDisp">
+
+            </div>
+        </section>
+        <section id="peopleRole-cont">
+            <div id="peopleRoleDisp">
+                <div class="peopleTop">
+
+
                 </div>
-                <div class="peopleRole">
-                    <h4 class="roleTitle">Cook</h4>
-                    <button class="roleAssign"><</button>
-                    <button class="roleAssign">></button>
-                    <p>Assigned to: <span id="cookAmt"></span></p>
-                </div>
-                <div class="peopleRole">
-                    <h4 class="roleTitle">Server</h4>
-                    <button class="roleAssign"><</button>
-                    <button class="roleAssign">></button>
-                    <p>Assigned to: <span id="serverAmt"></span></p>
+                <div id="peopleBottom">
+                    <div class="peopleRole">
+                        <h4 class="roleTitle">Baker</h4>
+                        <button class="roleAssign">
+                            <</button> <button class="roleAssign">>
+                        </button>
+                        <p>Bakers Assigned: <span id="bakerAmt"></span></p>
+                    </div>
+                    <div class="peopleRole">
+                        <h4 class="roleTitle">Cook</h4>
+                        <button class="roleAssign">
+                            <</button> <button class="roleAssign">>
+                        </button>
+                        <p>Cooks Assigned: <span id="cookAmt"></span></p>
+                    </div>
+                    <div class="peopleRole">
+                        <h4 class="roleTitle">Server</h4>
+                        <button class="roleAssign">
+                            <</button> <button class="roleAssign">>
+                        </button>
+                        <p>Servers Assigned: <span id="serverAmt"></span></p>
+                    </div>
+                    <div class="peopleRole">
+                        <h4 class="roleTitle">Farmer</h4>
+                        <button class="roleAssign">
+                            <</button> <button class="roleAssign">>
+                        </button>
+                        <p>Farmers Assigned: <span id="farmerAmt"></span></p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="moneyManage-cont">
-        <div id="moneyManageDisp">
-            <div class="moneyTop">
-                <div class="moneyTitle">
-                    <h3>Money Manager</h3>
+        </section>
+        <section id="moneyManage-cont">
+            <div id="moneyManageDisp">
+                <div id="moneyTop">
+                    <div class="moneyTitle">
+                        <h3>Money Manager</h3>
+                    </div>
+                    <div id="moneyCounter">
+                        <img src="./img/money.svg" alt="">
+                        <h4>$<span id="moneyAmt">---</span></h4>
+                    </div>
                 </div>
-                <div class="moneyCounter">
-                    <img src="./img/money.svg" alt="">
-                    <p id="money">$---</p>
-                </div>
-            </div>
-            <div class="moneyBottom">
-                <button class="moneyButton">Invest</button>
-                <button class="moneyButton">Loan</button>
-                <button class="moneyButton">Save</button>
-                <button class="moneyButton">Borrow</button>
-            </div>
-        </div>
-    </section>
-    <section id="inventory-cont">
-        <div id="inventoryDisp">
-            <div class="inventoryTitle">
-                <h3>Inventory</h3>
-            </div>
-            <div class="inventoryFilter">
-                <div class="filterItem">
-                    <p class="filterInvTxt"></p>
+                <div id="moneyBottom">
+                    <button class="moneyButton">Invest</button>
+                    <button class="moneyButton">Loan</button>
+                    <button class="moneyButton">Save</button>
+                    <button class="moneyButton">Borrow</button>
                 </div>
             </div>
-            <div class="inventoryContent">
-                <div class="inventoryItem">
-                    <p class="invItemTitle">Cakes</p>
-                    <img src="./img/Birthday Cake.svg" alt="">
-                    <p class="amtHead">Amount:</p>
-                    <p class="amtTxt"></p>
+        </section>
+        <section id="inventory-cont">
+            <div id="inventoryDisp">
+                <div id="inventoryTitle">
+                    <h3>Inventory</h3>
                 </div>
-                <div class="inventoryItem">
-                    <p class="invItemTitle">Danishes</p>
-                    <img src="" alt="">
-                    <p class="amtHead">Amount:</p>
-                    <p class="amtTxt"></p>
+                <div class="inventoryFilter">
+                    <div class="filterItem">
+                        <p class="filterInvTxt"></p>
+                    </div>
                 </div>
-                <div class="inventoryItem">
-                    <p class="invItemTitle">Scones</p>
-                    <img src="" alt="">
-                    <p class="amtHead">Amount:</p>
-                    <p class="amtTxt"></p>
-                </div>
-                <div class="inventoryItem">
-                    <p class="invItemTitle">Filet Mignons</p>
-                    <img src="" alt="">
-                    <p class="amtHead">Amount:</p>
-                    <p class="amtTxt"></p>
-                </div>
-                <div class="inventoryItem">
-                    <p class="invItemTitle">Porterhouses</p>
-                    <img src="" alt="">
-                    <p class="amtHead">Amount:</p>
-                    <p class="amtTxt"></p>
-                </div>
-                <div class="inventoryItem">
-                    <p class="invItemTitle">Sirloins</p>
-                    <img src="" alt="">
-                    <p class="amtHead">Amount:</p>
-                    <p class="amtTxt"></p>
-                </div>
-                <div class="inventoryItem">
-                    <p class="invItemTitle">Mashed Potatoes</p>
-                    <img src="" alt="">
-                    <p class="amtHead">Amount:</p>
-                    <p class="amtTxt"></p>
+                <div id="inventoryContent">
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Cakes</p>
+                        <img src="./img/cake.svg" alt="">
+                        <p id="cake" class="amtTxt">0</p>
+                        <button onclick="bakeItem('Cake')">Bake</button>
+                    </div>
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Cookies</p>
+                        <img src="./img/cookies.svg" alt="">
+                        <p id="cookies" class="amtTxt">0</p>
+                        <button onclick="bakeItem('Cookies')">Bake</button>
+                    </div>
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Pies</p>
+                        <img src="./img/pie.svg" alt="">
+                        <p id="pie" class="amtTxt">0</p>
+                        <button onclick="">Bake</button>
+                    </div>
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Danishes</p>
+                        <img src="./img/danish.svg" alt="">
+                        <p id="danish" class="amtTxt">0</p>
+                        <button onclick="">Bake</button>
+                    </div>
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Scones</p>
+                        <img src="" alt="">
+                        <p class="amtTxt">0</p>
+                        <button onclick="">Bake</button>
+                    </div>
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Filet Mignons</p>
+                        <img src="" alt="">
+                        <p class="amtTxt">0</p>
+                        <button onclick="">Cook</button>
+                    </div>
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Porterhouses</p>
+                        <img src="" alt="">
+                        <p class="amtTxt">0</p>
+                        <button onclick="">Cook</button>
+                    </div>
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Sirloins</p>
+                        <img src="" alt="">
+                        <p class="amtTxt"></p>
+                        <button onclick="">Cook</button>
+                    </div>
+                    <div class="inventoryItem">
+                        <p class="invItemTitle">Mashed Potatoes</p>
+                        <img src="" alt="">
+                        <p class="amtTxt"></p>
+                        <button onclick="">Cook</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="typeSwitcher-cont">
-        <div id="typeSwitcherDisp">
-            <div class="typeSwitcherTitle">
-                <h3>Restaurant:</h3>
+        </section>
+        <section id="typeSwitcher-cont">
+            <div id="typeSwitcherDisp">
+                <div class="typeSwitcherTitle">
+                    <h3>Restaurant:</h3>
+                </div>
+                <div class="typeSwitcherMenu">
+                    <button class="typeSwitch">Bakery</button>
+                    <button class="typeSwitch">SteakHouse</button>
+                    <button class="typeSwitch">Diner</button>
+                    <button class="typeSwitch">Burger Bar</button>
+                    <button class="typeSwitch">Coffee Shop</button>
+                    <button class="typeSwitch">Chinese Restaurant</button>
+                </div>
             </div>
-            <div class="typeSwitcherMenu">
-                <button class="typeSwitch">Bakery</button>
-                <button class="typeSwitch">SteakHouse</button>
-                <button class="typeSwitch">Diner</button>
-                <button class="typeSwitch">Burger Bar</button>
-                <button class="typeSwitch">Coffee Shop</button>
-                <button class="typeSwitch">Chinese Restaurant</button>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
 
     <!-- Add your site or application content here -->
     <script src="js/vendor/modernizr-3.11.2.min.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/calculators.js"></script>
+    <script src="js/game.js"></script>
+
 
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
