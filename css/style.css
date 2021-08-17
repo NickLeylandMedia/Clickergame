@@ -1,15 +1,15 @@
 #gameWrapper {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "rest rest rest" "resource resource menu" "people money menu" "hap hap inv";
+      grid-template-areas: "rest rest rest" "resource people menu" "barn money menu" "event blo inv" "hap hap sarg";
 }
 
 /* Resource Styling */
 #resourceDisp-cont {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
   grid-area: resource;
+  margin: 30px 0;
 }
 
 #resourceDisp {
@@ -39,6 +39,7 @@
   width: 33%;
   height: 48%;
   text-align: center;
+  margin: 10px 0;
 }
 
 .mainResource img {
@@ -88,14 +89,41 @@
 .menuNav {
   width: 100%;
   height: 30px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.menuNav:active {
+  border-bottom: none;
+}
+
+.menuGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.researchItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 /* People/Role Assignment Menu */
 #peopleRole-cont {
   width: 100%;
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
   grid-area: people;
+  margin: 30px 0;
 }
 
 #peopleRoleDisp {
@@ -124,11 +152,54 @@
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .peopleRole {
   text-align: center;
-  width: 50%;
+  width: 44%;
+  height: 44%;
+  margin: 5px auto;
+  padding: 1.5%;
+  border-radius: 25px;
+  border: 2px solid black;
+}
+
+.peopleRole p {
+  padding: 8px 0px;
+}
+
+.peopleRole h4 {
+  margin: 3px 0;
+}
+
+#roleTitle {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.peopleImg {
+  height: 55px;
+  width: auto;
+}
+
+.peopleAct {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.peopleCost {
+  margin: 0px 10px;
 }
 
 /* Restaurant type switcher */
@@ -155,7 +226,7 @@
 
 /* Happiness Meter */
 #happyMeter-cont {
-  -ms-grid-row: 4;
+  -ms-grid-row: 5;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: hap;
@@ -231,7 +302,7 @@
   text-align: center;
 }
 
-#moneyBottom {
+#moneyActions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -247,6 +318,249 @@
 
 .moneyButton {
   width: 22%;
+}
+
+#researchBottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#researchTitle {
+  text-align: center;
+}
+
+#researchCounter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#researchActions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.researchButton {
+  padding: 3px 15px;
+}
+
+/* Event Log */
+#eventLog-cont {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: event;
+  width: 100%;
+  length: 100%;
+}
+
+#eventLogDisp {
+  width: 100%;
+}
+
+#eventLogTitle {
+  text-align: center;
+}
+
+.logEvent {
+  width: 90%;
+  height: 15%;
+  border-radius: 25px;
+  background-color: grey;
+  padding: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border: 2px solid black;
+  margin: 10px auto;
+}
+
+.eventPic {
+  content: url(/Clickergame/img/tube.svg);
+}
+
+.logEvent.red {
+  background-color: rgba(255, 0, 0, 0.7);
+}
+
+.logEvent.gold {
+  background-color: gold;
+}
+
+.logEvent.blue {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+.eventPic {
+  height: auto;
+  width: 30px;
+  padding: 0px 30px 0px 50px;
+  position: relative;
+  top: 70%;
+}
+
+.eventTxt {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.eventTxt h4, p {
+  margin: 3px 0px;
+}
+
+/* Barn Manager */
+#barnManager-cont {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: barn;
+}
+
+#barnManagerDisp {
+  text-align: center;
+}
+
+#barnManagerContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.managerItem {
+  width: 45%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: grey;
+  margin: 10px auto;
+  padding: 1%;
+  border-radius: 17px;
+}
+
+.managerItem-Left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  width: 50%;
+}
+
+.managerItem-Right {
+  height: 100%;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.barnItemTitle-cont {
+  text-align: center;
+}
+
+.barnItemTitle {
+  margin: 5px 0px;
+}
+
+.barnItemAct {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-align: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.midStat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.barnItemImg {
+  width: 50px;
+  height: auto;
+  padding: 0px 15px;
+}
+
+.barnItemAmt {
+  position: relative;
+  top: 0%;
+}
+
+.barnItemStat {
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding-right: 100px;
+}
+
+/* Universal Styles */
+.disabled {
+  -webkit-filter: opacity(0.3);
+          filter: opacity(0.3);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 body {

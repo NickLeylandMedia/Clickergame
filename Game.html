@@ -93,7 +93,7 @@
                         <button class="menuNav">Buy</p>
                     </div>
                     <div class="menuNavItem">
-                        <button class="menuNav">Upgrades</p>
+                        <button class="menuNav active">Upgrades</p>
                     </div>
                     <div class="menuNavItem">
                         <button class="menuNav">Achievements</p>
@@ -101,21 +101,49 @@
                 </div>
                 <div class="gameMenuContent">
                     <div class="menuGroup">
-                        <div class="researchItem">
-                            <img src="" alt="">
-                            <p class="researchItemTitle"></p>
+                        <div id="researchPageOne" class="researchPage">
+                            <div class="researchItem">
+                                <img src="" alt="">
+                                <p class="researchItemTitle"></p>
+                                <p class="researchItemCost"></p>
+                            </div>
+                            <div class="researchItem">
+                                <img src="" alt="">
+                                <p class="researchItemTitle"></p>
+                                <p class="researchItemCost"></p>
+                            </div>
+                            <div class="researchItem">
+                                <img src="" alt="">
+                                <p class="researchItemTitle"></p>
+                                <p class="researchItemCost"></p>
+                            </div>
+                            <div class="researchItem">
+                                <img src="" alt="">
+                                <p class="researchItemTitle"></p>
+                                <p class="researchItemCost"></p>
+                            </div>
                         </div>
-                        <div class="researchItem">
-                            <img src="" alt="">
-                            <p class="researchItemTitle"></p>
-                        </div>
-                        <div class="researchItem">
-                            <img src="" alt="">
-                            <p class="researchItemTitle"></p>
-                        </div>
-                        <div class="researchItem">
-                            <img src="" alt="">
-                            <p class="researchItemTitle"></p>
+                        <div id="researchPageTwo" class="researchPage">
+                            <div class="researchItem">
+                                <img src="" alt="">
+                                <p class="researchItemTitle"></p>
+                                <p class="researchItemCost"></p>
+                            </div>
+                            <div class="researchItem">
+                                <img src="" alt="">
+                                <p class="researchItemTitle"></p>
+                                <p class="researchItemCost"></p>
+                            </div>
+                            <div class="researchItem">
+                                <img src="" alt="">
+                                <p class="researchItemTitle"></p>
+                                <p class="researchItemCost"></p>
+                            </div>
+                            <div class="researchItem">
+                                <img src="" alt="">
+                                <p class="researchItemTitle"></p>
+                                <p class="researchItemCost"></p>
+                            </div>
                         </div>
                     </div>
                     <div class="menuGroup">
@@ -147,36 +175,49 @@
         <section id="peopleRole-cont">
             <div id="peopleRoleDisp">
                 <div class="peopleTop">
-
-
+                    <div id="roleTitle">
+                        <h2>Employee Manager</h2>
+                    </div>
                 </div>
                 <div id="peopleBottom">
                     <div class="peopleRole">
+                        <img src="./img/chefHat.svg" alt="" class="peopleImg">
                         <h4 class="roleTitle">Baker</h4>
-                        <button class="roleAssign">
-                            <</button> <button class="roleAssign">>
-                        </button>
+                        <div class="peopleAct">
+                            <button class="roleAssign" onclick="fireEmp('Bakers', 1)">
+                                <</button> <p class="peopleCost">$<span id="bakerCost"></span></p>
+                                    <button class="roleAssign" onclick="hireEmp('Bakers', 1)">></button>
+                        </div>
                         <p>Bakers Assigned: <span id="bakerAmt"></span></p>
                     </div>
                     <div class="peopleRole">
+                        <img src="./img/pan.svg" alt="" class="peopleImg">
                         <h4 class="roleTitle">Cook</h4>
-                        <button class="roleAssign">
-                            <</button> <button class="roleAssign">>
-                        </button>
+                        <div class="peopleAct">
+                            <button class="roleAssign" onclick="fireEmp('Cooks', 1)">
+                                <</button> <p class="peopleCost">$<span id="cookCost"></span></p>
+                                    <button class="roleAssign" onclick="hireEmp('Cooks', 1)">></button>
+                        </div>
                         <p>Cooks Assigned: <span id="cookAmt"></span></p>
                     </div>
                     <div class="peopleRole">
+                        <img src="./img/platter.svg" alt="" class="peopleImg">
                         <h4 class="roleTitle">Server</h4>
-                        <button class="roleAssign">
-                            <</button> <button class="roleAssign">>
-                        </button>
+                        <div class="peopleAct">
+                            <button class="roleAssign" onclick="fireEmp('Servers', 1)">
+                                <</button> <p class="peopleCost">$<span id="serverCost"></span></p>
+                                    <button class="roleAssign" onclick="hireEmp('Servers', 1)">></button>
+                        </div>
                         <p>Servers Assigned: <span id="serverAmt"></span></p>
                     </div>
                     <div class="peopleRole">
+                        <img src="./img/rake.svg" alt="" class="peopleImg">
                         <h4 class="roleTitle">Farmer</h4>
-                        <button class="roleAssign">
-                            <</button> <button class="roleAssign">>
-                        </button>
+                        <div class="peopleAct">
+                            <button class="roleAssign" onclick="fireEmp('Farmers', 1)">
+                                <</button> <p class="peopleCost">$<span id="farmerCost"></span></p>
+                                    <button class="roleAssign" onclick="hireEmp('Farmers', 1)">></button>
+                        </div>
                         <p>Farmers Assigned: <span id="farmerAmt"></span></p>
                     </div>
                 </div>
@@ -192,12 +233,26 @@
                         <img src="./img/money.svg" alt="">
                         <h4>$<span id="moneyAmt">---</span></h4>
                     </div>
+                    <div id="moneyActions">
+                        <button class="moneyButton">Invest</button>
+                        <button class="moneyButton">Loan</button>
+                        <button class="moneyButton">Save</button>
+                        <button class="moneyButton">Borrow</button>
+                    </div>
                 </div>
-                <div id="moneyBottom">
-                    <button class="moneyButton">Invest</button>
-                    <button class="moneyButton">Loan</button>
-                    <button class="moneyButton">Save</button>
-                    <button class="moneyButton">Borrow</button>
+                <div id="researchBottom">
+                    <div id="researchTitle">
+                        <h3>Research Manager</h3>
+                    </div>
+                    <div id="researchCounter">
+                        <img src="./img/react.svg" alt="">
+                        <h4>RP: <span id="rpAmt"></span></h4>
+                    </div>
+                    <div id="researchActions">
+                        <button class="researchButton">Research</button>
+                        <button class="researchButton">Convert</button>
+                        <button class="researchButton">Experiment</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -228,7 +283,7 @@
                         <p class="invItemTitle">Pies</p>
                         <img src="./img/pie.svg" alt="">
                         <p id="pie" class="amtTxt">0</p>
-                        <button onclick="">Bake</button>
+                        <button onclick="bakeItem('Pie')">Bake</button>
                     </div>
                     <div class="inventoryItem">
                         <p class="invItemTitle">Danishes</p>
@@ -269,8 +324,69 @@
                 </div>
             </div>
         </section>
+        <section id="eventLog-cont">
+            <div id="eventLogDisp">
+                <div id="eventLogTitle">
+                    <h3>Event Log</h3>
+                </div>
+                <div id="eventLog">
+                    
+                </div>
+            </div>
+        </section>
+        <section id="barnManager-cont">
+            <div id="barnManagerDisp">
+                <div id="barnManagerTitle">
+                    <h3>Barn Manager</h3>
+                </div>
+                <div id="barnManagerContent">
+                    <div class="managerItem">
+                        <div class="managerItem-Left">
+                            <div class="barnItemTitle-cont">
+                                <h4 class="barnItemTitle">Cows</h4>
+                            </div>
+                            <div class="barnItemAct">
+                                <button class="barnActButt">Process</button>
+                                <button class="barnActButt">Harvest</button>
+                            </div>
+                        </div>
+                        <div class="managerItem-Right">
+                            <div class="midStat">
+                                <img src="./img/cow.svg" alt="" class="barnItemImg">
+                                <p id="cowAmt" class="barnItemAmt"></p>
+                            </div>
+                            <div class="barnItemStat">
+                                <p class="capDisp">Storage: <span id="milkStor">0</span>/<span id="milkCap">000</span></p>
+                                <p class="rateDisp">Rate: <span id="milkRate">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="managerItem">
+                        <div class="managerItem-Left">
+                            <div class="barnItemTitle-cont">
+                                <h4 class="barnItemTitle">Chickens</h4>
+                            </div>
+                            <div class="barnItemAct">
+                                <button class="barnActButt">Process</button>
+                                <button class="barnActButt">Harvest</button>
+                            </div>
+                        </div>
+                        <div class="managerItem-Right">
+                            <div class="midStat">
+                                <img src="./img/chicken.svg" alt="" class="barnItemImg">
+                                <p id="chickenAmt" class="barnItemAmt"></p>
+                            </div>
+                            <div class="barnItemStat">
+                                <p class="capDisp">Storage: <span id="milkStor">0</span>/<span id="milkCap">000</span></p>
+                                <p class="rateDisp">Rate: <span id="milkRate">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="typeSwitcher-cont">
-            <div id="typeSwitcherDisp">
+            <div id="typeSwitcherDisp" class="">
                 <div class="typeSwitcherTitle">
                     <h3>Restaurant:</h3>
                 </div>
@@ -285,6 +401,16 @@
             </div>
         </section>
     </div>
+
+    <template id="evTemp">
+        <div class="logEvent">
+            <img src="./img/bill.svg" alt="" class="eventPic">
+            <div class="eventTxt">
+                <h4 class="eventTitle"></h4>
+                <p class="eventDetail"></p>
+            </div>
+        </div>
+    </template>
 
 
     <!-- Add your site or application content here -->
@@ -306,6 +432,9 @@
         ga('send', 'pageview')
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async></script>
+
+    
+
 </body>
 
 </html>

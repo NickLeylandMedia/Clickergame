@@ -1,5 +1,6 @@
 let mainObj = {
     Money: 60000,
+    RP: 10,
     Resources: {
         Milk: 0,
         Eggs: 0,
@@ -50,17 +51,23 @@ let mainObj = {
         Cookies: true,
         Pie: false
     },
-    Producers : {
-        Milk: false,
-        Eggs: false,
-        Sugar: false,
-        Water: false,
-        Flour: false,
-        Fruit: false
-    },
+    Barn : [
+        {Name: 'Cows', Amount: 0, Capacity: 5},
+        {Name: 'Chickens', Amount: 0, Capacity: 10}
+    ],
+    BarnStorage : [
+        {Name: 'Eggs', Capacity: 50, Ready: 0},
+        {Name: 'Milk', Capacity: 20, Ready: 0}
+    ],
     Rates : [
-        {Name: 'Sales', Min: 1, Max: 20}
-    ]        
+        {Name: 'Sales', Min: 20, Max: 25}
+    ],
+    ActiveIntervals : [
+        
+    ],
+    Research : [
+
+    ]
 }
 
 let bakeInfo = [
@@ -125,6 +132,31 @@ const harvFlour = document.getElementById('harvFlour')
 const harvFruit = document.getElementById('harvFruit')
 const harvSugar = document.getElementById('harvSugar')
 
+//Event Log Container
+const eventLog = document.getElementById('eventLog')
+
+/* Actives */
+let currLog = []
+
+let activLog = []
+
+let fullLog = []
+
+/* All Elements of Type Selectors */
+//Sections
+const allSect = document.querySelectorAll('section')
+//Divs
+const allDiv = document.querySelectorAll('div')
+
+/* Constructor Functions */
+const createEventObj = (title, msg, type) => {
+    return {
+        title: title,
+        message: msg,
+        type: type
+    }
+}
+
 
 /* Resource Functions */ 
 //Buy Resources
@@ -137,10 +169,12 @@ function buyResource(res, amt) {
         if (buyAmt <= diff) {
             mainObj.Resources[res] = mainObj.Resources[res] += buyAmt
             mainObj.Money = mainObj.Money -= roundedPer * buyAmt
+            logEvent('red', `${res} Bought.`, `${buyAmt} ${res} were bought.`)
         } else if (diff < buyAmt && mainObj.Resources[res] !== mainObj.Capacities[res]) {
             mainObj.Resources[res] = mainObj.Resources[res] += diff
             mainObj.Money = mainObj.Money -= roundedPer * diff
             console.log(`${diff} purchased, ${res} capacity reached.`)
+            logEvent('red', `${res} Bought.`, `${diff} ${res} were bought, capacity was reached.`)
         } else {
             console.log('Capacity reached!')
         } 
@@ -173,7 +207,7 @@ function harvestResource(res) {
 
 /* Baking Functions */
 //Index of Recipe
-function recipeIndex(arr, srch) {
+function getIndex(arr, srch) {
     for (i = 0; i < arr.length; i++) {
         if (srch == arr[i].Name) {
             return i
@@ -187,7 +221,7 @@ function bakeItem(item) {
     //Make Copy of Resources
     let resources = Object.assign({}, mainObj.Resources)
     //Get Index of Recipe
-    let recipeTarg = bakeInfo[recipeIndex(bakeInfo,item)]
+    let recipeTarg = bakeInfo[getIndex(bakeInfo,item)]
     //Get Name of Recipe
     let recipeName = recipeTarg.Name
     //Subtract individual ingredients from inventory - error if insufficient
@@ -201,12 +235,14 @@ function bakeItem(item) {
         } 
     })
 
-    let bakeAmt = valueInfo[recipeIndex(valueInfo, item)].Quantity
+    let bakeAmt = valueInfo[getIndex(valueInfo, item)].Quantity
 
     //Remove resources from mainObj inventory
     mainObj.Resources = resources
     //Add Baked item to inventory
     mainObj.Inventory[recipeName] += bakeAmt
+
+    logEvent('blue', `${recipeName} Baked!`, `Baked ${recipeName} and added to inventory!`)
 
     updateUI()
 
@@ -287,7 +323,7 @@ function sale() {
         let sel = keys[randSel]
         let buyMax
         let maxAmt = selArr[randSel][1]
-        let itemLimit = valueInfo[recipeIndex(valueInfo, sel)].Limit
+        let itemLimit = valueInfo[getIndex(valueInfo, sel)].Limit
         if (maxAmt > itemLimit) {
             buyMax = itemLimit
         } else {
@@ -295,7 +331,7 @@ function sale() {
         }
         let buyAmt = Math.floor((Math.random() * buyMax) +1)
         menu[sel] = menu[sel] - buyAmt
-        let itemVal = valueInfo[recipeIndex(valueInfo, sel)].Value
+        let itemVal = valueInfo[getIndex(valueInfo, sel)].Value
     
         mainObj.Money = mainObj.Money += buyAmt * itemVal
         mainObj.Inventory = menu
@@ -340,11 +376,24 @@ function pay() {
 }
 
 /* Employee Actions */
-function hireBaseEmp() {
-
+function hireEmp(type, amt) {
+    if (mainObj.Money >= mainObj.Employees[type].Hire * amt) {
+        mainObj.Employees[type].Amount = mainObj.Employees[type].Amount += amt
+        mainObj.Money = mainObj.Money -= mainObj.Employees[type].Hire
+    } else {
+        throw new Error('Not enough money!!')
+    }
+    updateUI()
 }
 
-
+function fireEmp(type, amt) {
+    if (mainObj.Employees[type].Amount >= amt) {
+        mainObj.Employees[type].Amount = mainObj.Employees[type].Amount -= amt
+    } else {
+        throw new Error(`No ${type} to fire!`)
+    }
+    updateUI()
+}
 
 /* Time Interval Functions */
 //Generate random Time Interval Between One and x Seconds
@@ -394,11 +443,28 @@ function allInts() {
 
 
 /* Rendering - UI Updating */
+//Hide Section
+function hideSect(id) {
+    let selId = document.getElementById(id)
+    selId.classList.add('hidden')
+}
+
 //Disable Buttons
 function disableButt(id) {
     id.disabled = true
 }
 
+//Disable All Buttons in Section
+function disableSect(sect) {
+    //Select Section via ID
+    let sel = document.getElementById(sect)
+    //Put all buttons in section into Array
+    let butts = sel.querySelectorAll('button')
+    //Disable all buttons in array
+    butts.forEach((butt) => butt.disabled = true )
+}
+
+/*
 //Check Harvestable
 function checkHarv() {
     if (mainObj.Producers.Eggs == false) {
@@ -420,7 +486,7 @@ function checkHarv() {
         disableButt(harvFruit)
     }
 }
-
+*/
 
 //Universal Render
 function univRender(elem, content) {
@@ -436,18 +502,114 @@ function updateUI() {
     univRender('milkAmt', mainObj.Resources.Milk)
     univRender('sugarAmt', mainObj.Resources.Sugar)
     
-
+    //Universal Resources
     univRender('moneyAmt', mainObj.Money)
+    univRender('rpAmt', mainObj.RP)
+
+    /* Employees */
+    //Employee Cost
+    univRender('bakerCost', mainObj.Employees.Bakers.Hire)
+    univRender('cookCost', mainObj.Employees.Cooks.Hire)
+    univRender('serverCost', mainObj.Employees.Servers.Hire)
+    univRender('farmerCost', mainObj.Employees.Farmers.Hire)
+
+    //Employee Amount
+    univRender('bakerAmt', mainObj.Employees.Bakers.Amount)
+    univRender('cookAmt', mainObj.Employees.Cooks.Amount)
+    univRender('serverAmt', mainObj.Employees.Servers.Amount)
+    univRender('farmerAmt', mainObj.Employees.Farmers.Amount)
+
+    //Inventory
     univRender('cake', mainObj.Inventory.Cake)
     univRender('cookies', mainObj.Inventory.Cookies)
     univRender('pie', mainObj.Inventory.Pie)
-    
     univRender('danish', mainObj.Inventory.Danish)
+
+    /* Barn */
+    //Barn Animals
+    univRender('cowAmt', mainObj.Barn[getIndex(mainObj.Barn, 'Cows')].Amount)
+    univRender('chickenAmt', mainObj.Barn[getIndex(mainObj.Barn, 'Chickens')].Amount)
+
+    //Barn Storage Capacities
+    //Milk
+    univRender('milkCap', mainObj.BarnStorage[getIndex(mainObj.BarnStorage, 'Milk')].Capacity)
+    univRender('milkStor', mainObj.BarnStorage[getIndex(mainObj.BarnStorage, 'Milk')].Ready)
 
     /* Functions to Call */
     //Check harvestable - enable/disable buttons
-    checkHarv()
+    //checkHarv()
+    //Render Event Log
+    renderEvents()
+    
 }
+
+/* Logging Events */
+function logEvent(type, title, msg) {
+    let newPerson = createEventObj(title, msg, type)
+    fullLog.push(newPerson)
+    currLog = fullLog.slice(-5)
+    activLog = currLog.reverse()
+    updateUI()
+}
+
+function renderEvents() {
+    eventLog.innerHTML = ''
+    for (i = 0; i < currLog.length; i++) {
+        const eventTemp = document.getElementById('evTemp').content.cloneNode(true)
+        eventTemp.querySelector('.eventTitle').innerHTML = activLog[i].title
+        eventTemp.querySelector('.eventDetail').innerHTML = activLog[i].message
+        eventTemp.querySelector('.logEvent').classList.add(activLog[i].type)
+        
+        if (activLog[i].type == 'red') {
+            eventTemp.querySelector('.eventPic').src="./img/shipment.svg"
+        }
+
+        if (activLog[i].type == 'green') {
+            eventTemp.querySelector('.eventPic').src="./img/coin.svg"
+        }
+        
+        if (activLog[i].type == 'blue') {
+            eventTemp.querySelector('.eventPic').src="./img/potfood.svg"
+        }
+
+        if (activLog[i].type == 'gold') {
+            eventTemp.querySelector('.eventPic').src="./img/coin.svg"
+        }
+
+        eventLog.appendChild(eventTemp)
+
+
+    }
+}
+
+/* Rendering- Listeners */
+//Hide Sections Automatically
+setInterval(function() {
+    allSect.forEach((cur) => {
+        if (cur.classList.contains('disabled')) {
+            disableSect(cur.id)
+        };  
+    })
+}), 5
+
+
+
+
+function togglehidden(id) {
+    let elem = document.getElementById(id)
+    elem.classList.toggle('disabled')
+}
+
+function log() {
+    console.log('hello World')
+}
+
+//Hide Divs Automatically
+allDiv.forEach((cur) => {
+    if (cur.classList.contains('hidden')) {
+        hideSect(cur.id)
+    }
+})
 
 
 /* On Start */
