@@ -72,10 +72,10 @@
                     </div>
                     <div class="mainResource">
                         <img src="./img/Apple.svg" alt="">
-                        <p id="sugarAmt">0</p>
+                        <p id="fruitAmt">0</p>
                         <h3>Fruit</h3>
                         <button id="harvFruit">Harvest</button>
-                        <button>Buy</button>
+                        <button onclick="buyResource('Fruit', 1)">Buy</button>
                     </div>
                 </div>
                 <div id="resourceRight">
@@ -87,9 +87,6 @@
             <div id="gameMenuDisp">
                 <div class="gameMenuNav">
                     <div class="menuNavItem">
-                        <button class="menuNav">Research</p>
-                    </div>
-                    <div class="menuNavItem">
                         <button class="menuNav">Buy</p>
                     </div>
                     <div class="menuNavItem">
@@ -97,6 +94,9 @@
                     </div>
                     <div class="menuNavItem">
                         <button class="menuNav">Achievements</p>
+                    </div>
+                    <div class="menuNavItem">
+                        <button class="menuNav active">Quests</p>
                     </div>
                 </div>
                 <div class="gameMenuContent">
@@ -180,45 +180,49 @@
                     </div>
                 </div>
                 <div id="peopleBottom">
-                    <div class="peopleRole">
+                    <div class="peopleRole list" id="bakerRole">
                         <img src="./img/chefHat.svg" alt="" class="peopleImg">
                         <h4 class="roleTitle">Baker</h4>
                         <div class="peopleAct">
                             <button class="roleAssign" onclick="fireEmp('Bakers', 1)">
-                                <</button> <p class="peopleCost">$<span id="bakerCost"></span></p>
-                                    <button class="roleAssign" onclick="hireEmp('Bakers', 1)">></button>
+                                -</button> <p class="peopleCost">$<span class="roleCostSpan" id="bakerCost"></span></p>
+                                    <button class="roleAssign" onclick="hireEmp('Bakers', 1)">+</button>
                         </div>
-                        <p>Bakers Assigned: <span id="bakerAmt"></span></p>
+                        <p>Bakers Assigned: <span class="roleAmtSpan" id="bakerAmt"></span></p>
                     </div>
-                    <div class="peopleRole">
+                    <div class="peopleRole list" id="cookRole">
                         <img src="./img/pan.svg" alt="" class="peopleImg">
                         <h4 class="roleTitle">Cook</h4>
                         <div class="peopleAct">
                             <button class="roleAssign" onclick="fireEmp('Cooks', 1)">
-                                <</button> <p class="peopleCost">$<span id="cookCost"></span></p>
-                                    <button class="roleAssign" onclick="hireEmp('Cooks', 1)">></button>
+                                -</button> <p class="peopleCost">$<span class="roleCostSpan" id="cookCost"></span></p>
+                                    <button class="roleAssign" onclick="hireEmp('Cooks', 1)">+</button>
                         </div>
-                        <p>Cooks Assigned: <span id="cookAmt"></span></p>
+                        <p>Cooks Assigned: <span class="roleAmtSpan" id="cookAmt"></span></p>
                     </div>
-                    <div class="peopleRole">
+                    <div class="peopleRole list" id="serverRole">
                         <img src="./img/platter.svg" alt="" class="peopleImg">
                         <h4 class="roleTitle">Server</h4>
                         <div class="peopleAct">
                             <button class="roleAssign" onclick="fireEmp('Servers', 1)">
-                                <</button> <p class="peopleCost">$<span id="serverCost"></span></p>
-                                    <button class="roleAssign" onclick="hireEmp('Servers', 1)">></button>
+                                -</button> <p class="peopleCost">$<span class="roleCostSpan" id="serverCost"></span></p>
+                                    <button class="roleAssign" onclick="hireEmp('Servers', 1)">+</button>
                         </div>
-                        <p>Servers Assigned: <span id="serverAmt"></span></p>
+                        <p>Servers Assigned: <span class="roleAmtSpan" id="serverAmt"></span></p>
                     </div>
-                    <div class="peopleRole">
+                    <div class="peopleRole list" id="farmerRole">
                         <img src="./img/rake.svg" alt="" class="peopleImg">
                         <h4 class="roleTitle">Farmer</h4>
                         <div class="peopleAct">
                             <button class="roleAssign" onclick="fireEmp('Farmers', 1)">
-                                <</button> <p class="peopleCost">$<span id="farmerCost"></span></p>
-                                    <button class="roleAssign" onclick="hireEmp('Farmers', 1)">></button>
+                                -</button> <p class="peopleCost">$<span class="roleCostSpan" id="farmerCost"></span></p>
+                                    <button class="roleAssign" onclick="hireEmp('Farmers', 1)">+</button>
                         </div>
-                        <p>Farmers Assigned: <span id="farmerAmt"></span></p>
+                        <p>Farmers Assigned: <span class="roleAmtSpan" id="farmerAmt"></span></p>
+                    </div>
+                    <div id="peopleDispType">
+                        <button class="peopleDispButt" id="peopleGridButt" onclick="empManagerDisp('grid')"><img src="./img/grid.svg" alt="" srcset=""></button>
+                        <button class="peopleDispButt active" id="peopleListButt" onclick="empManagerDisp('list')"><img src="./img/list.svg" alt="" srcset=""></button>
                     </div>
                 </div>
             </div>
@@ -377,7 +381,7 @@
                                 <p id="chickenAmt" class="barnItemAmt"></p>
                             </div>
                             <div class="barnItemStat">
-                                <p class="capDisp">Storage: <span id="milkStor">0</span>/<span id="milkCap">000</span></p>
+                                <p class="capDisp">Storage: <span id="eggStor">0</span>/<span id="eggCap">000</span></p>
                                 <p class="rateDisp">Rate: <span id="milkRate">0</span></p>
                             </div>
                         </div>
@@ -400,6 +404,22 @@
                 </div>
             </div>
         </section>
+        <section id="cheatMenu">
+            <div id="cheatMenu">
+                <div id="codeInput">
+                    <input type="text" name="cheat" id="cheat">
+                    <button id="confirmCheat">GO</button>
+                </div>
+                <div id="quickCheats">
+                    <button class="cheatButton">Money</button>
+                    <button class="cheatButton">Main Resources</button>
+                    <button class="cheatButton">Inventory</button>
+                    <button class="cheatButton">Employees</button>
+                    <button class="cheatButton">Research Points</button>
+                    <button class="cheatButton">Livestock</button>
+                </div>
+            </div>
+        </section>
     </div>
 
     <template id="evTemp">
@@ -408,6 +428,9 @@
             <div class="eventTxt">
                 <h4 class="eventTitle"></h4>
                 <p class="eventDetail"></p>
+            </div>
+            <div class="mult-cont">
+                <h5 class="eventMult"></h3>
             </div>
         </div>
     </template>

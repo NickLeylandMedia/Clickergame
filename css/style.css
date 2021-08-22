@@ -167,6 +167,42 @@
   border: 2px solid black;
 }
 
+.peopleRole.list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 100%;
+}
+
+.peopleRole.list .peopleCost {
+  padding-top: 20%;
+}
+
+.peopleRole.list .roleCostSpan {
+  padding-bottom: 2%;
+}
+
+.peopleRole.list .roleAmtSpan {
+  padding-left: 5px;
+  padding-bottom: 3%;
+}
+
+.peopleRole.list h4, span {
+  vertical-align: middle;
+  padding-top: 2%;
+}
+
+.peopleRole.list p {
+  padding-top: 3%;
+}
+
 .peopleRole p {
   padding: 8px 0px;
 }
@@ -200,6 +236,22 @@
 
 .peopleCost {
   margin: 0px 10px;
+}
+
+.peopleDispButt {
+  vertical-align: center;
+  border-radius: 5px;
+}
+
+.peopleDispButt.active {
+  background-color: rgba(172, 25, 25, 0.9);
+}
+
+.peopleDispButt img {
+  padding: 5px;
+  height: 10px;
+  width: 10px;
+  vertical-align: middle;
 }
 
 /* Restaurant type switcher */
@@ -369,7 +421,7 @@
   -ms-grid-column: 1;
   grid-area: event;
   width: 100%;
-  length: 100%;
+  height: 100%;
 }
 
 #eventLogDisp {
@@ -430,6 +482,21 @@
 
 .eventTxt h4, p {
   margin: 3px 0px;
+}
+
+.mult-cont {
+  width: 5%;
+  margin-left: 50%;
+}
+
+.eventMult {
+  border-radius: 15px;
+  border: 1px solid black;
+  padding: 5px;
+  background-color: chocolate;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 /* Barn Manager */

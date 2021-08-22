@@ -6,43 +6,45 @@ let mainObj = {
         Eggs: 0,
         Flour: 0,
         Water: 0,
-        Sugar: 0
+        Sugar: 0,
+        Fruit: 0,
     },
     Capacities : {
         Eggs: 60,
         Water: 60,
         Flour: 50,
         Sugar: 50,
-        Milk: 50
+        Milk: 50,
+        Fruit: 20
     },
     Rates : {
         Water: 2
     },
     Employees: {
         Bakers: {
-            Amount: 1,
+            Amount: 0,
             Hire: 100,
             Salary: 12
         },
         Cooks: {
-            Amount: 4,
+            Amount: 0,
             Hire: 80,
             Salary: 11
         },
         Servers: {
-            Amount: 7,
+            Amount: 0,
             Hire: 50,
             Salary: 7
         },
         Farmers: {
-            Amount: 1,
+            Amount: 0,
             Hire: 120,
             Salary: 10
         }
     },
     Inventory: {
-        Cake: 20,
-        Cookies: 10,
+        Cake: 0,
+        Cookies: 0,
         Pie: 0,
         Danish: 0
     },
@@ -102,8 +104,27 @@ let costInfo = {
     Water : {
         Cost: 1,
         Amount: 20
+    },
+    Fruit : {
+        Cost: 6,
+        Amount: 2
     }
 }
+
+/* Game Menu */
+let gameMenu = {
+    //Buy Menu
+    buyMenu : [
+        {Name: '', Visible: true, Enabled: true, Image: ''}
+    ],
+    //Achievement Menu
+    Achievements : [],
+    //Quest Menu
+    Quests : []
+
+} 
+
+
 
 /* Interval Variables */
 //Main Resource Intervals
@@ -149,13 +170,19 @@ const allSect = document.querySelectorAll('section')
 const allDiv = document.querySelectorAll('div')
 
 /* Constructor Functions */
-const createEventObj = (title, msg, type) => {
+const createEventObj = (title, msg, type, count) => {
     return {
         title: title,
         message: msg,
-        type: type
+        type: type,
+        count: count
     }
 }
+
+
+let terkArr = document.querySelectorAll('.peopleRole')
+
+let terkList = Array.from(terkArr)
 
 
 /* Resource Functions */ 
@@ -169,12 +196,12 @@ function buyResource(res, amt) {
         if (buyAmt <= diff) {
             mainObj.Resources[res] = mainObj.Resources[res] += buyAmt
             mainObj.Money = mainObj.Money -= roundedPer * buyAmt
-            logEvent('red', `${res} Bought.`, `${buyAmt} ${res} were bought.`)
+            logEvent('red', `${res} Bought.`, `${buyAmt} ${res} were bought.`, 1)
         } else if (diff < buyAmt && mainObj.Resources[res] !== mainObj.Capacities[res]) {
             mainObj.Resources[res] = mainObj.Resources[res] += diff
             mainObj.Money = mainObj.Money -= roundedPer * diff
             console.log(`${diff} purchased, ${res} capacity reached.`)
-            logEvent('red', `${res} Bought.`, `${diff} ${res} were bought, capacity was reached.`)
+            logEvent('red', `${res} Bought.`, `${diff} ${res} were bought, capacity was reached.`, 1)
         } else {
             console.log('Capacity reached!')
         } 
@@ -205,7 +232,7 @@ function harvestResource(res) {
 }
 
 
-/* Baking Functions */
+/* Supporting Functions */
 //Index of Recipe
 function getIndex(arr, srch) {
     for (i = 0; i < arr.length; i++) {
@@ -216,6 +243,16 @@ function getIndex(arr, srch) {
     return "not in array"
 }
 
+//Check if Same/Duplicate
+function checkDupe(a,b) {
+    if (a === b) {
+        return true
+    } else {
+        return false
+    }
+}
+
+/* Baking Functions */
 //Bake Item 
 function bakeItem(item) {
     //Make Copy of Resources
@@ -464,6 +501,54 @@ function disableSect(sect) {
     butts.forEach((butt) => butt.disabled = true )
 }
 
+/* Pagination */
+function paginateArray(arr, perPage, pageNumber) {
+    const start = perPage * (pageNumber - 1)
+    const size = arr.length
+
+    return {
+        data: arr.slice(start, start + perPage),
+        numberOfPages: Math.ceil(size / perPage),
+        currentPage: pageNumber,
+        dataLength: size
+    }
+}
+
+
+
+
+//Change Display Type of Elements
+function changeDispType(type, elem){
+    if (Array.isArray(elem)) {
+        elem.forEach((cur) =>{
+            cur.classList.remove('grid')
+            cur.classList.remove('list')
+            cur.classList.add(type)
+        })
+    } else {
+        elem.classList.remove('grid')
+        elem.classList.remove('list')
+        elem.classList.add(type)
+    }
+}
+
+//Change Display Type of Employee Manager
+function empManagerDisp(type) {
+    let gridButt = document.getElementById('peopleGridButt')
+    let listButt = document.getElementById('peopleListButt')
+    let node = document.querySelectorAll('.peopleRole')
+    let arr = Array.from(node)
+    if (type === 'list') {
+        changeDispType('list', arr)
+        gridButt.classList.remove('active')
+        listButt.classList.add('active')
+    } else {
+        changeDispType('grid', arr)
+        listButt.classList.remove('active')
+        gridButt.classList.add('active')
+    }
+}
+
 /*
 //Check Harvestable
 function checkHarv() {
@@ -501,6 +586,7 @@ function updateUI() {
     univRender('eggAmt', mainObj.Resources.Eggs)
     univRender('milkAmt', mainObj.Resources.Milk)
     univRender('sugarAmt', mainObj.Resources.Sugar)
+    univRender('fruitAmt', mainObj.Resources.Fruit)
     
     //Universal Resources
     univRender('moneyAmt', mainObj.Money)
@@ -534,6 +620,12 @@ function updateUI() {
     //Milk
     univRender('milkCap', mainObj.BarnStorage[getIndex(mainObj.BarnStorage, 'Milk')].Capacity)
     univRender('milkStor', mainObj.BarnStorage[getIndex(mainObj.BarnStorage, 'Milk')].Ready)
+    //Eggs
+    univRender('eggCap', mainObj.BarnStorage[getIndex(mainObj.BarnStorage, 'Eggs')].Capacity)
+    univRender('eggStor', mainObj.BarnStorage[getIndex(mainObj.BarnStorage, 'Eggs')].Ready)
+
+
+    hideSect('cheatMenu')
 
     /* Functions to Call */
     //Check harvestable - enable/disable buttons
@@ -544,9 +636,17 @@ function updateUI() {
 }
 
 /* Logging Events */
-function logEvent(type, title, msg) {
-    let newPerson = createEventObj(title, msg, type)
-    fullLog.push(newPerson)
+function logEvent(type, title, msg, count) {
+    let newPerson = createEventObj(title, msg, type, count)
+    if (activLog.length > 0 && activLog[0].message === newPerson.message) {
+        newPerson.count = activLog[0].count += 1
+        console.log(newPerson.count)
+        fullLog.pop()
+        fullLog.push(newPerson)
+    } else {
+        fullLog.push(newPerson)
+    }
+    
     currLog = fullLog.slice(-5)
     activLog = currLog.reverse()
     updateUI()
@@ -574,6 +674,14 @@ function renderEvents() {
 
         if (activLog[i].type == 'gold') {
             eventTemp.querySelector('.eventPic').src="./img/coin.svg"
+        }
+
+
+        if (activLog[i].count > 1) {
+            console.log('vaggina')
+            eventTemp.querySelector('.eventMult').innerHTML = activLog[i].count
+        } else {
+            eventTemp.querySelector('.eventMult').style.visibility='hidden'
         }
 
         eventLog.appendChild(eventTemp)
